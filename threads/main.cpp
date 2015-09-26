@@ -6,6 +6,7 @@
 // cl -Od /Z7 /W3 /DDEBUG /DEBUG /Fo.\bin\win_debug\ main.cpp /link /out:bin\win_debug\main.exe
 
 // cl -Ox /Z7 /W3 /EHsc /DEBUG /Fo.\bin\win_release\ main.cpp /link /out:bin\win_release\main.exe & .\bin\win_release\main.exe
+// cl -Od /Z7 /W3 /DDEBUG /DEBUG /Fo.\bin\win_debug\ main.cpp /link /out:bin\win_debug\main.exe & .\bin\win_release\main.exe
 
 #include <iostream>
 #include <thread>
@@ -34,8 +35,36 @@ void ThreadFunc (high_resolution_clock::time_point pWaitUntil, high_resolution_c
     cout << i << endl;
 }
 
+struct ABC {
+	union {
+		uint32_t x;
+		struct {
+				uint32_t a : 4;
+				uint32_t b : 4;
+				uint32_t c : 4;
+				uint32_t d : 4;
+		};
+	};
+};
+
+void functest(uint64_t *p)
+{
+    uint32_t * x = (uint32_t *)p;
+    uint32_t * y = ((uint32_t *)p) + 1;
+}
+
 int main ()
 {
+	ABC x;
+	x.x = 0;
+	x.a = 1;
+	x.b = 2;
+	x.c = 3;
+	x.d = 4;
+
+    uint64_t abc = 4294967295;
+    functest (&abc);
+
     thread * t[NUM_THREADS];
 
     high_resolution_clock::time_point wait = high_resolution_clock::now() + milliseconds(200);

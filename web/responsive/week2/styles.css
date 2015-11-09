@@ -1,0 +1,11 @@
+/* Style for h1 heading*/
+h1{
+	/* background of the h1 text changed to black */
+	background:black;
+	/* the text color changed to white to work well with black background */
+	color:white;
+	/* a margin on the left given for the h1 text */
+	margin-left:10px;
+	/* the font family with several font names as a "fallback" system specified for h1 */
+	font-family: Arial, Helvetica, sans-serif;
+}

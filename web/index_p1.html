@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	var colors = ["blue", "cyan", "gold", "gray", "green", "magenta", "orange", "red", "white", "yellow"];
+	
+	// returns -1 if it is not found
+	// else the index in the array
+	function is_it_a_valid_color(pCol)
+	{
+		var a = colors.indexOf(pCol);
+		return a;
+	}
+
+	function do_game ()
+	{
+		var finished = false;
+		var guesses = 0;
+		var mychoice = 0;
+		
+		colors.sort();
+		mychoice = Math.floor((Math.random() * colors.length));
+		alert(colors[mychoice]);
+		
+		while (!finished){
+			var guess_input_string = prompt ("I am thinking of one of these colors:\n\n\
+			blue, cyan, gold, gray, green, magenta, orange, red, white, yellow\n\n\
+			what color am I thinking of?");
+			
+			guesses++;
+			var user_choice = is_it_a_valid_color(guess_input_string);
+			
+			if(user_choice != mychoice)
+				continue;
+
+			var myBody=document.getElementsByTagName("body")[0];
+			myBody.style.background=colors[mychoice];
+	
+			alert("Congratulations! You have guessed the color! \n\n\
+			It took you " + guesses + " guesses to finish the game!\n\n\
+			You can see the color in the background.");				
+				
+			finished = true;	
+		}
+	}
+</script>
+</head>
+<body onload="do_game()">
+</body>
+</html>

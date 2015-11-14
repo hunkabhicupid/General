@@ -39,7 +39,7 @@ int main ()
         c++;
     }
 #elif defined(SLEEP)
-    this_thread::sleep_for(2s);
+    this_thread::sleep_for(seconds(2));
 #endif
     hrcstop     = high_resolution_clock::now();
     time_span = duration_cast<duration<double, milli>>(hrcstop - hrcstart);
@@ -53,7 +53,7 @@ int main ()
         c++;
     }
 #elif defined(SLEEP)
-    this_thread::sleep_for(2s);
+    this_thread::sleep_for(seconds(2));
 #endif
     stcstop     = steady_clock::now();
     time_span = duration_cast<duration<double, milli>>(stcstop - stcstart);
@@ -67,7 +67,7 @@ int main ()
         c++;
     }
 #elif defined(SLEEP)
-    this_thread::sleep_for(2s);
+    this_thread::sleep_for(seconds(2));
 #endif
     scstop      = system_clock::now();
     time_span = duration_cast<duration<double, milli>>(scstop - scstart);
@@ -81,7 +81,7 @@ int main ()
         c++;
     }
 #elif defined(SLEEP)
-    this_thread::sleep_for(2s);
+    this_thread::sleep_for(seconds(2));
 #endif
     cstop      = clock();    
     cout << (((float)(cstop - cstart)*1000)/CLOCKS_PER_SEC) << endl;

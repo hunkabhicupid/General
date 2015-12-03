@@ -77,14 +77,14 @@ int main()
     SetUnhandledExceptionFilter(HandleException);
 
     int ret = 0; 
-    //try {
+    try {
         //func1();
         func3();
         printf("PostThrow2\n");
-    //} catch (...) {        
-    //    printf("Program failed\n");
-    //    ret = -1;
-    //}
+    } catch (...) {        
+        printf("Program failed\n");
+        ret = -1;
+    }
 
     printf("Program Termination\n");
     return ret;
